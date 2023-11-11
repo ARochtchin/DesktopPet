@@ -14,7 +14,8 @@ namespace DesktopPet.Models
         int _sleepTimeS = 60;
 
         int2 _screenSize;
-        int2 _currentPosition = new int2() { x = 0, y = 100 };
+        int2 _currentPosition = new int2(0,0);
+        int2 _currentWindowSize = new int2(100, 100);
         Timer scenarioTimer;
         Random rnd = new Random();
 
@@ -139,9 +140,9 @@ namespace DesktopPet.Models
         {
             if(size.x<=0 || size.y<=0) 
                 return;
-            if (_screenSize.Equals(size))
+            if (_currentWindowSize.Equals(size))
                 return;
-            _screenSize = size;
+            _currentWindowSize = size;
             Raise_resizeWindow(size);
         }
 
