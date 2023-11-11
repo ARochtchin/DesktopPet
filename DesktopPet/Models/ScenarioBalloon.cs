@@ -41,24 +41,24 @@ namespace DesktopPet.Models
             {
                 if (++_ground_counter < 257)
                 {
-                    return new MoveResult() { WindowPos = pos };
+                    return new MoveResult(pos);
                 }
                 else
                 {
                     _stage = eBalloonStage.Air;
                     Gif = _gif_air;
-                    return new MoveResult() { WindowPos = pos, RefreshRequest = true };
+                    return new MoveResult(pos).Refresh();
                 }
             }
             else
             {
                 if (pos.y > -100)
                 {
-                    return new MoveResult() { WindowPos = new int2 { x = pos.x, y = pos.y - 5 } };
+                    return new MoveResult(pos.x, pos.y - 5);
                 }
                 else
                 {
-                    return new MoveResult() { WindowPos = pos, FinishRequest = true };
+                    return new MoveResult(pos).Finish();
                 }
             }
         }

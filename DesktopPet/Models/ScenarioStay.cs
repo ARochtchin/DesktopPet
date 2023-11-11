@@ -21,7 +21,7 @@ namespace DesktopPet.Models
 
         public MoveResult OnMove(int2 pos, int2 screen)
         {
-            return new MoveResult { FinishRequest = true, WindowPos = pos };
+            return new MoveResult(pos).Finish();
         }
 
         public void OnPause(bool pause)

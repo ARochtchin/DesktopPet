@@ -49,34 +49,31 @@ namespace DesktopPet.Models
         }
         public MoveResult OnMove(int2 pos, int2 screen)
         {
-            MoveResult res = new MoveResult() { FinishRequest = false, RefreshRequest = false };
+            MoveResult res = new MoveResult(pos);// { FinishRequest = false, RefreshRequest = false };
             if (!_pause)
             {
                 if (forwardDirection)
                 {
                     if (pos.x < screen.x)
                     {
-                        res.WindowPos = new int2 { x = pos.x + 5, y = pos.y };
+                        res.Move(pos.x + 5, pos.y );
                     }
                     else
                     {
                         forwardDirection = false;
-                        res.WindowPos = pos;
-                        res.RefreshRequest = true;
+                        res.Refresh();
                     }
                 }
                 else
                 {
                     if (pos.x > -100)
                     {
-                        res.WindowPos = new int2 { x = pos.x - 5, y = pos.y };
+                        res.Move(new int2(pos.x - 5, pos.y ));
                     }
                     else
                     {
                         forwardDirection = true;
-                        res.WindowPos = pos;
-                        res.RefreshRequest = true;
-                        res.FinishRequest = true;
+                        res.Refresh().Finish();
                     }
                 }
             }

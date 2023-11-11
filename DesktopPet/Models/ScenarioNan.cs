@@ -27,9 +27,9 @@ namespace DesktopPet.Models
         public MoveResult OnMove(int2 pos, int2 screen)
         {
             if (--_elapsed > 0)
-                return new MoveResult(pos).TitleRefresh();// { FinishRequest = false, WindowPos = pos, TitleRefreshRequest=true };
+                return new MoveResult(pos).TitleRefresh();
             else
-                return new MoveResult(pos).Finish();// { FinishRequest = true, WindowPos = pos };
+                return new MoveResult(pos).Finish();
         }
 
         public void OnPause(bool pause)

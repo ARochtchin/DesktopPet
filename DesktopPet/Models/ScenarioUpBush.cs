@@ -46,24 +46,24 @@ namespace DesktopPet.Models
                 if (pos.y > 0)
                 {
                     int dy = (_upCounter++ % 5 == 0) ? 4 : 2;
-                    return new MoveResult { FinishRequest = false, WindowPos = new int2 { x = pos.x, y = pos.y - dy } };
+                    return new MoveResult(pos.x, pos.y - dy);
                 }
                 else
                 {
                     _stage = eUpBush.Down;
                     Gif = _gif_down;
-                    return new MoveResult { FinishRequest = false, WindowPos = pos, RefreshRequest = true };
+                    return new MoveResult(pos).Refresh(); 
                 }
             }
             else if (_stage == eUpBush.Down)
             {
                 if (pos.y < screen.y - 150)
-                    return new MoveResult { FinishRequest = false, WindowPos = new int2 { x = pos.x, y = pos.y + (int)(Math.Sqrt(pos.y)) + 2 } };
+                    return new MoveResult(pos.x, pos.y + (int)(Math.Sqrt(pos.y)) + 2);
                 else
                 {
                     _stage = eUpBush.Bush;
                     Gif = _gif_bush;
-                    return new MoveResult { FinishRequest = false, WindowPos = new int2 { x = screen.x - 100, y = screen.y - 150 }, RefreshRequest = true };
+                    return new MoveResult(screen.x - 100, screen.y - 100).Refresh();
                 }
             }
             else
@@ -71,11 +71,11 @@ namespace DesktopPet.Models
                 if (_bushCounter < 180)
                 {
                     ++_bushCounter;
-                    return new MoveResult { FinishRequest = false, WindowPos = pos };
+                    return new MoveResult(pos);
                 }
                 else
                 {
-                    return new MoveResult { FinishRequest = true, WindowPos = pos };
+                    return new MoveResult(pos).Finish();
                 }
             }
         }
