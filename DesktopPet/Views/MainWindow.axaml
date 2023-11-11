@@ -1,0 +1,38 @@
+<Window
+    x:Name="wind"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:gif="clr-namespace:AvaloniaGif;assembly=AvaloniaGif"
+    xmlns:vm="using:DesktopPet.ViewModels"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DesignWidth="120" d:DesignHeight="170"
+    x:Class="DesktopPet.Views.MainWindow"
+    x:DataType="vm:MainViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    Topmost="True"
+    CanResize="False"
+    ShowInTaskbar="False"
+    Background="Transparent"
+    ExtendClientAreaChromeHints="NoChrome"
+    ExtendClientAreaToDecorationsHint="True"
+    Width="120"
+    Height="120"
+        >
+
+
+    <Design.DataContext>
+      <!-- This only sets the DataContext for the previewer in an IDE,
+             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
+      <vm:MainViewModel/>
+    </Design.DataContext>
+
+  <Grid>
+      <gif:GifImage Height="100" Width="100" SourceUriRaw="{Binding ActiveGif}" 
+                    PointerPressed="GifImage_PointerPressed"
+                    PointerReleased="GifImage_PointerReleased"
+                    Stretch="UniformToFill" StretchDirection="Both"
+                    />
+    <!--StretchDirection="DownOnly" Stretch="UniformToFill"-->
+  </Grid>
+  </Window>

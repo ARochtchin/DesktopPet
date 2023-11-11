@@ -1,0 +1,37 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="DesktopPet.App"
+             xmlns:vm="using:DesktopPet.ViewModels"
+             x:DataType="vm:MainViewModel"
+             xmlns:local="using:DesktopPet"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             RequestedThemeVariant="Default">
+  <!-- "Default" ThemeVariant follows system theme variant. "Dark" or "Light" are other available options. -->
+
+  <Application.DataTemplates>
+    <local:ViewLocator/>
+  </Application.DataTemplates>
+
+  <Application.Styles>
+    <FluentTheme />
+  </Application.Styles>
+
+
+  <TrayIcon.Icons>
+    <TrayIcons>
+      <TrayIcon Icon="/Assets/Vinni.ico" ToolTipText="{Binding CurrentScenarioName}">
+        <TrayIcon.Menu>
+          <NativeMenu>
+            <NativeMenuItem Header="{Binding CurrentScenarioName}"/>
+            <NativeMenuItemSeparator/>
+            <NativeMenuItem Header="Show random" Command="{Binding Show}"/>
+            <NativeMenuItem Header="Hide" Command="{Binding Hide}"/>
+            <NativeMenuItemSeparator/>
+            <NativeMenuItem Header="Settings" Command="{Binding ShowSettings}"/>
+            <NativeMenuItem Header="Exit" Click="Exit_Click" />
+          </NativeMenu>
+        </TrayIcon.Menu>
+      </TrayIcon>
+    </TrayIcons>
+  </TrayIcon.Icons>
+</Application>

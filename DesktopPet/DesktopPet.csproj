@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Assets\**" />
+    <None Remove="Assets\TrayIcon.ico" />
+    <None Remove="Images\Balloon.gif" />
+    <None Remove="Images\None.gif" />
+    <None Remove="Images\Vinni.gif" />
+    <None Remove="Images\Vinni_balloon.gif" />
+    <None Remove="Images\Vinni_bush.gif" />
+    <None Remove="Images\Vinni_down.gif" />
+    <None Remove="Images\Vinni_move.gif" />
+    <None Remove="Images\Vinni_move_back.gif" />
+    <None Remove="Images\Vinni_move_honey.gif" />
+    <None Remove="Images\Vinni_move_honey_back.gif" />
+    <None Remove="Images\Vinni_pause.gif" />
+    <None Remove="Images\Vinni_sighs_left.gif" />
+    <None Remove="Images\Vinni_sighs_right.gif" />
+    <None Remove="Images\Vinni_up.gif" />
+    <AvaloniaResource Include="Images\Balloon.gif" />
+    <AvaloniaResource Include="Images\None.gif" />
+    <AvaloniaResource Include="Images\Vinni.gif" />
+    <AvaloniaResource Include="Images\Vinni_balloon.gif" />
+    <AvaloniaResource Include="Images\Vinni_bush.gif" />
+    <AvaloniaResource Include="Images\Vinni_down.gif" />
+    <AvaloniaResource Include="Images\Vinni_move.gif" />
+    <AvaloniaResource Include="Images\Vinni_move_back.gif" />
+    <AvaloniaResource Include="Images\Vinni_move_honey.gif" />
+    <AvaloniaResource Include="Images\Vinni_move_honey_back.gif" />
+    <AvaloniaResource Include="Images\Vinni_pause.gif" />
+    <AvaloniaResource Include="Images\Vinni_sighs_left.gif" />
+    <AvaloniaResource Include="Images\Vinni_sighs_right.gif" />
+    <AvaloniaResource Include="Images\Vinni_up.gif" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Themes.Fluent" Version="11.0.5" />
+    <PackageReference Include="Avalonia.Fonts.Inter" Version="11.0.5" />
+    <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
+    <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.5" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.0.5" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\AvaloniaGif\AvaloniaGif.csproj" />
+  </ItemGroup>
+</Project>
