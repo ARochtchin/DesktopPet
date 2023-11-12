@@ -1,22 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using DesktopPet.Models;
 
-namespace DesktopPet.Models
+namespace WinnieThePooh
 {
-
-    class ScenarioSighs : IScenario
+    class Sighs : IScenario
     {
         bool _left;
-        public ScenarioSighs(bool left)
+        public Sighs(bool left)
         {
             _left = left;
             if (left)
-                Gif = "avares://DesktopPet/Images/Vinni_sighs_left.gif";
+                Gif = "avares://WinnieThePooh/Images/sighs_left.gif";
             else
-                Gif = "avares://DesktopPet/Images/Vinni_sighs_right.gif";
+                Gif = "avares://WinnieThePooh/Images/sighs_right.gif";
         }
 
         public string Title => "Sighs";

@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Input;
 using DesktopPet.Models;
+using DynamicData;
 using ReactiveUI;
 using System;
 using System.Collections.ObjectModel;
@@ -18,7 +19,7 @@ public class MainViewModel : ViewModelBase
     public MainViewModel()
     {
         scenarioManager = new ScenarioManager();
-        Scenarios = scenarioManager.GetScenarios();
+        Packs = new ObservableCollection<PackViewModel>(Array.ConvertAll(scenarioManager.GetPacks(), x => new PackViewModel(x)));
         ShowSettings = ReactiveCommand.Create(showSettings);
         Hide = ReactiveCommand.Create(() => { if (scenarioManager != null) scenarioManager.Sleep(); });
         Show = ReactiveCommand.Create(() => { if (scenarioManager != null) scenarioManager.ShowRandom(); });
@@ -27,7 +28,7 @@ public class MainViewModel : ViewModelBase
     internal void Initialize(int2 screenSize, Action<int2> moveWindow, Action<int2> resizeWindow)
     {
         scenarioManager.SetScreenSize(screenSize);
-        scenarioManager.eActiveChange += (id, scenario) => { SelectedScenarioIndex = id; CurrentScenarioName = scenario.Title; };
+        scenarioManager.eActiveChange += (scenario) => { CurrentScenarioName = scenario.Title; };
         scenarioManager.eMove += moveWindow;
         scenarioManager.eResize += resizeWindow;
         scenarioManager.eGIF_Refresh += (path) => { ActiveGif = path; };
@@ -46,8 +47,7 @@ public class MainViewModel : ViewModelBase
         private set { _activeGIF = value; this.RaisePropertyChanged(); }
     }
 
-    public string[] Scenarios { get; private set; }
-
+    public ObservableCollection<PackViewModel> Packs { get; private set; }
 
     string _currentScenarioName = "";
     public String CurrentScenarioName
@@ -56,17 +56,20 @@ public class MainViewModel : ViewModelBase
         set { _currentScenarioName = value; this.RaisePropertyChanged(); }
     }
 
-    int _selectedScenarioId = -1;
-    public int SelectedScenarioIndex
+    Object _selected;
+    public object Selected
     {
-        get { return _selectedScenarioId; }
+        get { return _selected; }
         set
         {
-            if (value != _selectedScenarioId)
+            _selected = value; this.RaisePropertyChanged();
+            if(value is PackViewModel)
             {
-                _selectedScenarioId = value; 
-                scenarioManager.CurrentId = value; 
-                this.RaisePropertyChanged();
+            }
+            else if(value is ScenarioViewModel)
+            {
+                var selected = value as ScenarioViewModel;
+                scenarioManager.current = selected.Model.Scenario;
             }
         }
     }

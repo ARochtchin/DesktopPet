@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\move.gif" />
+    <None Remove="Images\move_back.gif" />
+    <None Remove="Images\move_honey.gif" />
+    <None Remove="Images\move_honey_back.gif" />
+    <None Remove="Images\pause.gif" />
+    <None Remove="Images\sighs_left.gif" />
+    <None Remove="Images\sighs_right.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DesktopPet\DesktopPet.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <AvaloniaResource Include="Images\move.gif" />
+    <AvaloniaResource Include="Images\move_back.gif" />
+    <AvaloniaResource Include="Images\move_honey.gif" />
+    <AvaloniaResource Include="Images\move_honey_back.gif" />
+    <AvaloniaResource Include="Images\pause.gif" />
+    <AvaloniaResource Include="Images\sighs_left.gif" />
+    <AvaloniaResource Include="Images\sighs_right.gif" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Properties\" />
+  </ItemGroup>
+
+</Project>

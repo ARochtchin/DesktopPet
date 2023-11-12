@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
+using System.Collections.ObjectModel;
 
 namespace DesktopPet.Models
 {
@@ -16,24 +17,31 @@ namespace DesktopPet.Models
             Load(new string[] { "Plugins" });
         }
 
+        internal List<IScenarioPack> GetPacks() 
+        { return plugins; }
+
         void Load(string[] paths)
         {
-            plugins = new List<IScenarioPack>();
-            var catalog = new AggregateCatalog();
-            foreach (var path in paths)
-                catalog.Catalogs.Add(new DirectoryCatalog(path));
-            var container = new CompositionContainer(catalog);
-            foreach (var lazyPlugin in container.GetExports<IScenarioPack>())
+            try
             {
-                try
+                plugins = new List<IScenarioPack>();
+                var catalog = new AggregateCatalog();
+                foreach (var path in paths)
+                    catalog.Catalogs.Add(new DirectoryCatalog(path));
+                var container = new CompositionContainer(catalog);
+                foreach (var lazyPlugin in container.GetExports<IScenarioPack>())
                 {
-                    plugins.Add(lazyPlugin.Value);
-                }
-                catch (CompositionException ex)
-                {
-                    //Console.WriteLine(ex);
+                    try
+                    {
+                        plugins.Add(lazyPlugin.Value);
+                    }
+                    catch (CompositionException ex)
+                    {
+                        //Console.WriteLine(ex);
+                    }
                 }
             }
+            catch { }
         }
     }
 }

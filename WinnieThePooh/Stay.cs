@@ -1,16 +1,17 @@
-﻿using System;
+﻿using DesktopPet.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DesktopPet.Models
+namespace WinnieThePooh
 {
-    class ScenarioStay : IScenario
+    class Stay : IScenario
     {
         public string Title => "Stay";
 
-        public string Gif => "avares://DesktopPet/Images/Vinni_pause.gif";
+        public string Gif => "avares://WinnieThePooh/Images/pause.gif";
 
         public int TimerInterval => 10000;
 

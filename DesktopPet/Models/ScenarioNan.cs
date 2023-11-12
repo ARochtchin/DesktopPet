@@ -8,7 +8,11 @@ namespace DesktopPet.Models
 {
     class ScenarioNan : IScenario
     {
-        int _sleepTime = 60;
+        private ScenarioNan() { }
+
+        static ScenarioNan _instance = new ScenarioNan();
+        public static ScenarioNan Instance => _instance;
+
         int _elapsed = 0;
 
         public string Title => "Wait { " + _elapsed + "s}";
@@ -16,11 +20,13 @@ namespace DesktopPet.Models
 
         public int TimerInterval { get => 1000; }
 
-        public void SetSleepTime(int seconds) { _sleepTime = seconds; }
+        int _sleepTime = 300;
+        public int SleepTime { get => _sleepTime;
+            set => _sleepTime = value > 1 ? value : 1; }
 
         public InitResult Initialize(int2 pos, int2 screen)
         {
-            _elapsed = _sleepTime;
+            _elapsed = SleepTime;
             return new InitResult(new int2(-200, -200), new int2(1, 1));
         }
 

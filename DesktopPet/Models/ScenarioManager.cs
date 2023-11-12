@@ -10,35 +10,21 @@ namespace DesktopPet.Models
 {
     class ScenarioManager
     {
-        IScenario[] scenarios;
-        int _sleepTimeS = 60;
+        PackModel[] _packs;
 
-        int2 _screenSize;
-        int2 _currentPosition = new int2(0,0);
+        int2 _screenSize = new int2(1920, 1080);
+        int2 _currentPosition = new int2(0, 0);
         int2 _currentWindowSize = new int2(100, 100);
         Timer scenarioTimer;
         Random rnd = new Random();
 
-        int _currentID = -0;
-        ScenarioNan _sleepScenario = new ScenarioNan();
+        IScenario _current;
+        ScenarioNan _sleepScenario = ScenarioNan.Instance;
 
         internal ScenarioManager()
         {
-            scenarios = new IScenario[]
-            {
-                //new ScenarioNan(),
-                new ScenarioMove(false,false),
-                new ScenarioSighs(true),
-                new ScenarioMove(false,true),
-                new ScenarioStay(),
-                new ScenarioMove(true,true),
-                new ScenarioSighs(false),
-                new ScenarioMove(true,false),
-                new ScenarioUpBush(),
-                new ScenarioBalloon()
-            };
-
-            _screenSize = new int2 { x = 1920, y = 1080 };
+            ScenarioCollection packsCollection = new ScenarioCollection();
+            _packs = packsCollection.GetPacks().ConvertAll(x => new PackModel(x)).ToArray();
 
             scenarioTimer = new Timer();
             scenarioTimer.Elapsed += Timer_Elapsed;
@@ -51,56 +37,70 @@ namespace DesktopPet.Models
 
         internal void Sleep()
         {
-            ChangeScenario(-1);
+            ChangeScenario(_sleepScenario);
         }
 
         internal void ShowRandom()
         {
-            ChangeScenario(rnd.Next(scenarios.Length));
+            //generate id
+            List<IScenario> activeScenarios = new List<IScenario>();
+            foreach (var pack in _packs)
+            {
+                if (pack.IsUsed)
+                {
+                    foreach (var scenario in pack.Scenarios)
+                    {
+                        if (scenario.IsUsed)
+                            activeScenarios.Add(scenario.Scenario);
+                    }
+                }
+            }
+            //rand
+            ChangeScenario(activeScenarios[rnd.Next(activeScenarios.Count)]);
         }
 
         internal void Pause(bool pause)
         {
             current.OnPause(pause);
+            
+            Raise_GIFrefresh(current.Gif);
+            
             if (pause) { scenarioTimer.Stop(); }
             else { scenarioTimer.Start(); }
         }
 
-        internal String[] GetScenarios() { return Array.ConvertAll(scenarios, x => x.Title); }
-
-        internal int CurrentId
-        {
-            get => _currentID;
-            set => ChangeScenario(value);
-        }
+        internal PackModel[] GetPacks() { return _packs; }
 
         internal void SetWindowPosition(int2 pos)
         { _currentPosition = pos; }
 
         internal int SleepTime
         {
-            get => _sleepTimeS;
+            get => _sleepScenario.SleepTime;
             set
             {
-                if (value > 0)
-                {
-                    _sleepTimeS = value;
-                    _sleepScenario.SetSleepTime( _sleepTimeS);
-                    ChangeScenario(-1);
-                }
+                _sleepScenario.SleepTime = value;
+                ChangeScenario(_sleepScenario);
             }
         }
 
-        IScenario current
+        internal IScenario current
         {
-            get { return _currentID < 0 ? _sleepScenario : scenarios[_currentID]; }
+            get
+            {
+                return _current;
+            }
+            set
+            {
+                ChangeScenario(value);
+            }
         }
 
-        void ChangeScenario(int id)
+        void ChangeScenario(IScenario scenario)
         {
-            if (id >= scenarios.Length)
-                return;
-            _currentID = id;
+            if (scenario == null)
+                scenario = _sleepScenario;
+            _current = scenario;
 
             var res = current.Initialize(_currentPosition, _screenSize);
             MoveWindow(res.WindowPos);
@@ -108,20 +108,20 @@ namespace DesktopPet.Models
 
             scenarioTimer.Interval = current.TimerInterval;
             scenarioTimer.Start();
-            Raise_activeChange(_currentID, current);
+            Raise_activeChange();
         }
 
         void Timer_Elapsed(object? sender, ElapsedEventArgs e)
         {
             var moveResult = current.OnMove(_currentPosition, _screenSize);
             if (moveResult.RefreshRequest) { Raise_GIFrefresh(current.Gif); }
-            if (moveResult.TitleRefreshRequest) { Raise_activeChange(_currentID, current); }
+            if (moveResult.TitleRefreshRequest) { Raise_activeChange(); }
             if (moveResult.ResizeRequest) { ResizeWindow(moveResult.WinodwSize); }
             MoveWindow(moveResult.WindowPos);
             if (moveResult.FinishRequest)
             {
                 scenarioTimer.Stop();
-                if (_currentID < 0)
+                if (_current is ScenarioNan)
                     ShowRandom();
                 else
                     Sleep();
@@ -138,7 +138,7 @@ namespace DesktopPet.Models
 
         void ResizeWindow(int2 size)
         {
-            if(size.x<=0 || size.y<=0) 
+            if (size.x <= 0 || size.y <= 0)
                 return;
             if (_currentWindowSize.Equals(size))
                 return;
@@ -159,16 +159,16 @@ namespace DesktopPet.Models
         {
             if (eResize != null) eResize(pos);
         }
-        private void Raise_activeChange(int id, IScenario scenario)
+        private void Raise_activeChange()
         {
-            if (eActiveChange != null) eActiveChange(id, scenario);
+            if (eActiveChange != null) eActiveChange(current);
             Raise_GIFrefresh(current.Gif);
         }
 
         internal event Action<string> eGIF_Refresh;
         internal event Action<int2> eMove;
         internal event Action<int2> eResize;
-        internal event Action<int, IScenario> eActiveChange;
+        internal event Action<IScenario> eActiveChange;
         #endregion
     }
 }

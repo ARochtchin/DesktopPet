@@ -38,10 +38,24 @@
       <TextBox Text="{Binding SleepTime}" Width="75"/>
     </StackPanel>
 
-    <ListBox Grid.Row="3" Grid.ColumnSpan="2" ItemsSource="{Binding Scenarios}" SelectedIndex="{Binding SelectedScenarioIndex}">
+    <!--<ComboBox Grid.Row="3" ItemsSource="{Binding Packs}" SelectedIndex="{Binding SelectedPackIndex}"/>
+    
+    <ListBox Grid.Row="4" ItemsSource="{Binding Scenarios}" SelectedIndex="{Binding SelectedScenarioIndex}">
 
-    </ListBox>
-
+    </ListBox>-->
+    <TreeView ItemsSource="{Binding Packs}" Grid.Row="3" SelectedItem="{Binding Selected}">
+      <TreeView.DataTemplates>
+        <TreeDataTemplate DataType="vm:PackViewModel" ItemsSource="{Binding Scenarios}">
+          <CheckBox IsChecked="{Binding IsUsed}" Content="{Binding Title}" FontWeight="Bold"/>
+          <!--<TextBlock FontWeight="Bold" Text="{Binding Title}" />-->
+        </TreeDataTemplate>
+        <DataTemplate DataType="vm:ScenarioViewModel">
+          <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsUsed}" Content="{Binding Title}"/>
+          </StackPanel>
+        </DataTemplate>
+      </TreeView.DataTemplates>
+    </TreeView>
 
 
   </Grid>

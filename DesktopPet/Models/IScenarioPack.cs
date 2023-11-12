@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DesktopPet.Models
 {
-    internal interface IScenarioPack
+    public interface IScenarioPack
     {
         string Name { get; }
         IScenario[] scenarios { get; }
