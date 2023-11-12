@@ -18,10 +18,10 @@ namespace DesktopPet.Models
 
         public void SetSleepTime(int seconds) { _sleepTime = seconds; }
 
-        public MoveResult InitMove(int2 pos, int2 screen)
+        public InitResult Initialize(int2 pos, int2 screen)
         {
             _elapsed = _sleepTime;
-            return new MoveResult(new int2(-200, -200)).Resize(new int2(1, 1)).Refresh();
+            return new InitResult(new int2(-200, -200), new int2(1, 1));
         }
 
         public MoveResult OnMove(int2 pos, int2 screen)

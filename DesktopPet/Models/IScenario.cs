@@ -22,7 +22,7 @@ namespace DesktopPet.Models
         /// <param name="pos">current window position</param>
         /// <param name="screen">current screen size</param>
         /// <returns></returns>
-        MoveResult InitMove(int2 windPos, int2 screenSize);
+        InitResult Initialize(int2 windPos, int2 screenSize);
         /// <summary>Refresh actions</summary>
         /// <param name="windPos">current window position</param>
         /// <param name="screenSize">current screen size</param>
@@ -57,7 +57,27 @@ namespace DesktopPet.Models
         }
     }
 
-    /// <summary>Move window</summary>
+    /// <summary>Init scenario parameters</summary>
+    public struct InitResult
+    {
+        /// <summary>LeftTop window corner position</summary>
+        public int2 WindowPos { get; private set; }
+        /// <summary>Window size</summary>
+        public int2 WinodwSize { get; private set; }
+
+        public InitResult(int2 pos, int2 size)
+        {
+            WindowPos = pos;
+            WinodwSize = size;
+        }
+
+        public InitResult Move(int x, int y) { this.WindowPos = new int2(x, y); return this; }
+        public InitResult Move(int2 pos) { this.WindowPos = pos; return this; }
+        public InitResult Resize(int2 size) { this.WinodwSize = size; return this; }
+        public InitResult Resize(int width, int heigth) { this.WinodwSize = new int2(width, heigth); return this; }
+    }
+
+    /// <summary>Move window parameters</summary>
     public struct MoveResult
     {
         /// <summary>LeftTop window corner position</summary>

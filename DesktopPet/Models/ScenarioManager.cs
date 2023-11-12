@@ -102,7 +102,7 @@ namespace DesktopPet.Models
                 return;
             _currentID = id;
 
-            var res = current.InitMove(_currentPosition, _screenSize);
+            var res = current.Initialize(_currentPosition, _screenSize);
             MoveWindow(res.WindowPos);
             ResizeWindow(res.WinodwSize);
 

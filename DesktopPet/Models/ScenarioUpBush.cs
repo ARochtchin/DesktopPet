@@ -30,13 +30,13 @@ namespace DesktopPet.Models
 
         public int TimerInterval => 50;
 
-        public MoveResult InitMove(int2 pos, int2 screen)
+        public InitResult Initialize(int2 pos, int2 screen)
         {
             _upCounter = 0;
             _bushCounter = 0;
             Gif = _gif_up;
             _stage = eUpBush.Up;
-            return new MoveResult(new int2(screen.x - 100, screen.y)).Resize(new int2(100, 100));
+            return new InitResult(new int2(screen.x - 100, screen.y), new int2(100, 100));
         }
 
         public MoveResult OnMove(int2 pos, int2 screen)
