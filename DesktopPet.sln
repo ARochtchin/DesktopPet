@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AvaloniaGif", "AvaloniaGif\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WinnieThePooh", "WinnieThePooh\WinnieThePooh.csproj", "{E1652308-7D32-4699-81CF-8FE8F88CC4A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppStarts", "AppStarts\AppStarts.csproj", "{29D8DBAA-7205-4E28-809E-6B8BE0E941A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{E1652308-7D32-4699-81CF-8FE8F88CC4A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E1652308-7D32-4699-81CF-8FE8F88CC4A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E1652308-7D32-4699-81CF-8FE8F88CC4A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29D8DBAA-7205-4E28-809E-6B8BE0E941A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29D8DBAA-7205-4E28-809E-6B8BE0E941A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29D8DBAA-7205-4E28-809E-6B8BE0E941A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29D8DBAA-7205-4E28-809E-6B8BE0E941A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

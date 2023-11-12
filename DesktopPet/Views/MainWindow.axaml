@@ -28,7 +28,7 @@
     </Design.DataContext>
 
   <Grid>
-      <gif:GifImage Height="100" Width="100" SourceUriRaw="{Binding ActiveGif}" 
+      <gif:GifImage SourceUriRaw="{Binding ActiveGif}" 
                     PointerPressed="GifImage_PointerPressed"
                     PointerReleased="GifImage_PointerReleased"
                     Stretch="UniformToFill" StretchDirection="Both"
