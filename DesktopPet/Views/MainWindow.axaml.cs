@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Threading;
 using DesktopPet.Models;
 using DesktopPet.ViewModels;
 using System.Drawing;
@@ -26,13 +27,19 @@ public partial class MainWindow : Window
 
     private void MoveWindow(int2 pos)
     {
-        wind.Position = new PixelPoint(pos.x, pos.y);
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            wind.Position = new PixelPoint(pos.x, pos.y);
+        });
     }
 
     private void ResizeWindow(int2 size)
     {
-        wind.Width = size.x;
-        wind.Height = size.y;
+        Dispatcher.UIThread.Invoke(() =>
+        {
+            wind.Width = size.x;
+            wind.Height = size.y;
+        });
     }
 
     private void GifImage_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
