@@ -10,17 +10,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Images\LinuxTerminal.gif" />
-    <None Remove="Images\Ubuntu_16.04_LTS_Starting.gif" />
-    <None Remove="Images\VS.gif" />
-    <None Remove="Images\windows-xp.gif" />
+    <None Remove="Images\Satellite.gif" />
   </ItemGroup>
 
   <ItemGroup>
-    <AvaloniaResource Include="Images\LinuxTerminal.gif" />
-    <AvaloniaResource Include="Images\Ubuntu_16.04_LTS_Starting.gif" />
-    <AvaloniaResource Include="Images\VS.gif" />
-    <AvaloniaResource Include="Images\windows-xp.gif" />
+    <AvaloniaResource Include="Images\Satellite.gif" />
   </ItemGroup>
 
   <ItemGroup>

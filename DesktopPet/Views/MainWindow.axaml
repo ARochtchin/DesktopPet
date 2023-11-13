@@ -31,7 +31,6 @@
       <gif:GifImage SourceUriRaw="{Binding ActiveGif}" 
                     PointerPressed="GifImage_PointerPressed"
                     PointerReleased="GifImage_PointerReleased"
-                    Stretch="UniformToFill" StretchDirection="Both"
                     />
     <!--StretchDirection="DownOnly" Stretch="UniformToFill"-->
   </Grid>

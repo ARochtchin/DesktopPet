@@ -38,8 +38,9 @@ namespace DesktopPet.Models
                 return new MoveResult(pos).Finish();
         }
 
-        public void OnPause(bool pause)
+        public bool OnPause(bool pause)
         {
+            return false;
         }
     }
 }

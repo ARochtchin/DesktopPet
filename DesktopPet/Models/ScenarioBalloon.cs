@@ -63,8 +63,9 @@ namespace DesktopPet.Models
             }
         }
 
-        public void OnPause(bool pause)
+        public bool OnPause(bool pause)
         {
+            return false;
         }
     }
 }

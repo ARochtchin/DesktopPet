@@ -18,9 +18,9 @@ namespace WinnieThePooh
         bool _pause= false;
         int _upCounter;
         int _bushCounter;
-        string _gif_up = "avares://DesktopPet/Images/Vinni_up.gif";
-        string _gif_down = "avares://DesktopPet/Images/Vinni_down.gif";
-        string _gif_bush = "avares://DesktopPet/Images/Vinni_bush.gif";
+        string _gif_up = "avares://WinnieThePooh/Images/Winni_up.gif";
+        string _gif_down = "avares://WinnieThePooh/Images/Winni_down.gif";
+        string _gif_bush = "avares://WinnieThePooh/Images/Winni_bush.gif";
         string _gif_pause = "avares://WinnieThePooh/Images/pause.gif";
         public UpBush()
         {
@@ -85,9 +85,10 @@ namespace WinnieThePooh
             }
         }
 
-        public void OnPause(bool pause)
+        public bool OnPause(bool pause)
         {
             _pause = pause;
+            return true;
         }
     }
 }

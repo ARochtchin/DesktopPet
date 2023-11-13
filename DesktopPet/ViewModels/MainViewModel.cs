@@ -35,9 +35,18 @@ public class MainViewModel : ViewModelBase
         scenarioManager.Sleep();
     }
 
-    public bool Pause
+    public bool Pause()
     {
-        set { if (scenarioManager != null) scenarioManager.Pause(value); }
+        if (scenarioManager != null) 
+            return scenarioManager.Pause(true);
+        return false;
+    }
+
+    public bool Resume()
+    {
+        if (scenarioManager != null)
+            return scenarioManager.Pause(false);
+        return false;
     }
 
     string _activeGIF = "avares://DesktopPet/Images/None.gif";

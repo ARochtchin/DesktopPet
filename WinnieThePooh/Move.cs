@@ -84,9 +84,10 @@ namespace WinnieThePooh
             }
 
         }
-        public void OnPause(bool pause)
+        public bool OnPause(bool pause)
         {
             _pause = pause;
+            return true;
         }
     }
 }

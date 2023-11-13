@@ -59,14 +59,15 @@ namespace DesktopPet.Models
             ChangeScenario(activeScenarios[rnd.Next(activeScenarios.Count)]);
         }
 
-        internal void Pause(bool pause)
+        internal bool Pause(bool pause)
         {
-            current.OnPause(pause);
+            var res = current.OnPause(pause);
             
             Raise_GIFrefresh(current.Gif);
             
             if (pause) { scenarioTimer.Stop(); }
             else { scenarioTimer.Start(); }
+            return res;
         }
 
         internal PackModel[] GetPacks() { return _packs; }

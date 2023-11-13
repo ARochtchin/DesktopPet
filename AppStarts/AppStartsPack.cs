@@ -10,7 +10,11 @@ namespace AppStarts
 
         public IScenario[] scenarios => new IScenario[]
         {
-            new StartIt(new AppItem("VisualStudio", "avares://AppStarts/Images/VS.gif", new int2(680,422)))
+            new StartIt(new AppItem("VisualStudio", "avares://AppStarts/Images/VS.gif")),
+            new StartIt(new AppItem("Ubuntu", "avares://AppStarts/Images/Ubuntu_16.04_LTS_Starting.gif", 10)),
+            new StartIt(new AppItem("Linux terminal", "avares://AppStarts/Images/LinuxTerminal.gif", 10)),
+            new StartIt(new AppItem("windows xp", "avares://AppStarts/Images/windows-xp.gif", 10))
+
         };
     }
 }

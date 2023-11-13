@@ -25,8 +25,9 @@ namespace WinnieThePooh
             return new MoveResult(pos).Finish();
         }
 
-        public void OnPause(bool pause)
+        public bool OnPause(bool pause)
         {
+            return true;
         }
     }
 }

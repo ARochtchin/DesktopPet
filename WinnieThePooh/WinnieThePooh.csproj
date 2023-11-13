@@ -1,9 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <BaseOutputPath>..\DesktopPet\bin\plugins\</BaseOutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +17,13 @@
     <None Remove="Images\pause.gif" />
     <None Remove="Images\sighs_left.gif" />
     <None Remove="Images\sighs_right.gif" />
+    <None Remove="Images\Winni.gif" />
+    <None Remove="Images\Winni_balloon.gif" />
+    <None Remove="Images\Winni_balloon_up.gif" />
+    <None Remove="Images\Winni_bush.gif" />
+    <None Remove="Images\Winni_down.gif" />
+    <None Remove="Images\Winni_up.gif" />
+    <None Remove="Images\_Vinni_pause.gif" />
   </ItemGroup>
 
   <ItemGroup>
@@ -28,6 +38,13 @@
     <AvaloniaResource Include="Images\pause.gif" />
     <AvaloniaResource Include="Images\sighs_left.gif" />
     <AvaloniaResource Include="Images\sighs_right.gif" />
+    <AvaloniaResource Include="Images\Winni.gif" />
+    <AvaloniaResource Include="Images\Winni_balloon.gif" />
+    <AvaloniaResource Include="Images\Winni_balloon_up.gif" />
+    <AvaloniaResource Include="Images\Winni_bush.gif" />
+    <AvaloniaResource Include="Images\Winni_down.gif" />
+    <AvaloniaResource Include="Images\Winni_up.gif" />
+    <AvaloniaResource Include="Images\_Vinni_pause.gif" />
   </ItemGroup>
 
   <ItemGroup>

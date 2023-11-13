@@ -46,15 +46,15 @@ public partial class MainWindow : Window
     {
         if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
-            viewModel.Pause = true;
-            this.BeginMoveDrag(e);
+            if (viewModel.Pause())
+                this.BeginMoveDrag(e);
         }
     }
 
     private void GifImage_PointerReleased(object? sender, Avalonia.Input.PointerReleasedEventArgs e)
     {
         viewModel.SetWindowPosition(wind.Position.X, wind.Position.Y);
-        viewModel.Pause = false;
+        viewModel.Resume();
     }
 
 }

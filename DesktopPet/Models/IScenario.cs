@@ -30,7 +30,8 @@ namespace DesktopPet.Models
         MoveResult OnMove(int2 pos, int2 screen);
         /// <summary>Start/Stop pause</summary>
         /// <param name="pause">is paused</param>
-        void OnPause(bool pause);
+        /// <returns>If pause possible</returns>
+        bool OnPause(bool pause);
     }
 
     /// <summary>

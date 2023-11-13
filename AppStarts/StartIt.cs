@@ -9,16 +9,26 @@ namespace AppStarts
 {
     class AppItem
     {
-        internal AppItem(string name, string gifPath, int2 size)
+        internal AppItem(string name, string gifPath, int2 size, int timeS=5)
         {
             Name = name;
             GifPath = gifPath;
             Size = size;
+            TimeS = timeS;
+        }
+
+        internal AppItem(string name, string gifPath, int timeS=5)
+        {
+            Name = name;
+            GifPath = gifPath;
+            Size = DesktopPet.Helpers.GetImageSize(gifPath);
+            TimeS = timeS;
         }
 
         public string Name { get; private set; }
         public string GifPath { get; private set; }
         public int2 Size { get; private set; }
+        public int TimeS { get; private set;}
     }
 
     internal class StartIt : IScenario
@@ -33,7 +43,7 @@ namespace AppStarts
 
         public string Gif => _appItem.GifPath;
 
-        public int TimerInterval => 5000;
+        public int TimerInterval => _appItem.TimeS * 1000;
 
         public InitResult Initialize(int2 windPos, int2 screenSize)
         {
@@ -46,9 +56,9 @@ namespace AppStarts
             return new MoveResult(pos).Finish();
         }
 
-        public void OnPause(bool pause)
+        public bool OnPause(bool pause)
         {
-            
+            return false;
         }
     }
 }
