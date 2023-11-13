@@ -15,6 +15,7 @@ namespace DesktopPet.Models
         int2 _screenSize = new int2(1920, 1080);
         int2 _currentPosition = new int2(0, 0);
         int2 _currentWindowSize = new int2(100, 100);
+        int2 _pause_save_currentWindowSize;
         Timer scenarioTimer;
         Random rnd = new Random();
 
@@ -62,9 +63,19 @@ namespace DesktopPet.Models
         internal bool Pause(bool pause)
         {
             var res = current.OnPause(pause);
+            if (pause==true)
+            {
+                _pause_save_currentWindowSize = _currentWindowSize;
+                _currentWindowSize = Helpers.GetImageSize(current.Gif);
+            }
+            else
+            {
+                _currentWindowSize = _pause_save_currentWindowSize;
+            }
             
             Raise_GIFrefresh(current.Gif);
-            
+            Raise_resizeWindow(Helpers.GetImageSize(current.Gif));
+
             if (pause) { scenarioTimer.Stop(); }
             else { scenarioTimer.Start(); }
             return res;

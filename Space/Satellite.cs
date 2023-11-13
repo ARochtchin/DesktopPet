@@ -13,7 +13,7 @@ namespace Space
 
         public string Gif => "avares://Space/Images/Satellite.gif";
 
-        public int TimerInterval => 100;
+        public int TimerInterval => 50;
 
         public InitResult Initialize(int2 windPos, int2 screenSize)
         {
@@ -25,7 +25,7 @@ namespace Space
         {
             if (pos.x < screen.x)
             {
-                return new MoveResult(pos.x + 5, pos.y);
+                return new MoveResult(pos.x + 5, pos.y - 2);
             }
             else
             {

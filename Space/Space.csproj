@@ -10,10 +10,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Images\Alien1.gif" />
+    <None Remove="Images\Alien2.gif" />
+    <None Remove="Images\Landing1.gif" />
+    <None Remove="Images\Landing2.gif" />
+    <None Remove="Images\moon_satellite.gif" />
     <None Remove="Images\Satellite.gif" />
   </ItemGroup>
 
   <ItemGroup>
+    <AvaloniaResource Include="Images\Alien1.gif" />
+    <AvaloniaResource Include="Images\Alien2.gif" />
+    <AvaloniaResource Include="Images\Landing1.gif" />
+    <AvaloniaResource Include="Images\Landing2.gif" />
+    <AvaloniaResource Include="Images\moon_satellite.gif" />
     <AvaloniaResource Include="Images\Satellite.gif" />
   </ItemGroup>
 

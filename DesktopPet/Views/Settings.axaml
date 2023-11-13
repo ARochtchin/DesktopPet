@@ -46,12 +46,15 @@
     <TreeView ItemsSource="{Binding Packs}" Grid.Row="3" SelectedItem="{Binding Selected}">
       <TreeView.DataTemplates>
         <TreeDataTemplate DataType="vm:PackViewModel" ItemsSource="{Binding Scenarios}">
-          <CheckBox IsChecked="{Binding IsUsed}" Content="{Binding Title}" FontWeight="Bold"/>
-          <!--<TextBlock FontWeight="Bold" Text="{Binding Title}" />-->
+          <StackPanel Orientation="Horizontal">
+            <CheckBox IsChecked="{Binding IsUsed}" />
+            <TextBlock Text="{Binding Title}" FontWeight="Bold"/>
+          </StackPanel>
         </TreeDataTemplate>
         <DataTemplate DataType="vm:ScenarioViewModel">
           <StackPanel Orientation="Horizontal">
-            <CheckBox IsChecked="{Binding IsUsed}" Content="{Binding Title}"/>
+            <CheckBox IsChecked="{Binding IsUsed}"/>
+            <TextBlock Text="{Binding Title}"/>
           </StackPanel>
         </DataTemplate>
       </TreeView.DataTemplates>
