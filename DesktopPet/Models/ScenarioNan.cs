@@ -27,7 +27,7 @@ namespace DesktopPet.Models
         public InitResult Initialize(int2 pos, int2 screen)
         {
             _elapsed = SleepTime;
-            return new InitResult(new int2(-200, -200), new int2(1, 1));
+            return new InitResult(new int2(-2000, -2000), new int2(1, 1));
         }
 
         public MoveResult OnMove(int2 pos, int2 screen)

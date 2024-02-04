@@ -110,6 +110,7 @@ namespace DesktopPet.Models
 
         void ChangeScenario(IScenario scenario)
         {
+            scenarioTimer.Stop();
             if (scenario == null)
                 scenario = _sleepScenario;
             _current = scenario;

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.ComponentModel.Composition;
 using System.ComponentModel.Composition.Hosting;
 using System.Collections.ObjectModel;
+using System.IO;
 
 namespace DesktopPet.Models
 {
@@ -17,31 +18,40 @@ namespace DesktopPet.Models
             Load(new string[] { "Plugins" });
         }
 
-        internal List<IScenarioPack> GetPacks() 
+        internal List<IScenarioPack> GetPacks()
         { return plugins; }
 
         void Load(string[] paths)
         {
-            try
+            using (var _log = new StreamWriter("Log.txt"))
             {
-                plugins = new List<IScenarioPack>();
-                var catalog = new AggregateCatalog();
-                foreach (var path in paths)
-                    catalog.Catalogs.Add(new DirectoryCatalog(path));
-                var container = new CompositionContainer(catalog);
-                foreach (var lazyPlugin in container.GetExports<IScenarioPack>())
+                try
                 {
-                    try
+                    plugins = new List<IScenarioPack>();
+                    var catalog = new AggregateCatalog();
+                    foreach (var path in paths)
                     {
-                        plugins.Add(lazyPlugin.Value);
+                        catalog.Catalogs.Add(new DirectoryCatalog(path));
+                        _log.WriteLine("Add catalog " + path);
                     }
-                    catch (CompositionException ex)
+                    _log.WriteLine("Create CompositionContainer");
+                    var container = new CompositionContainer(catalog);
+                    _log.WriteLine("Load plugins");
+                    foreach (var lazyPlugin in container.GetExports<IScenarioPack>())
                     {
-                        //Console.WriteLine(ex);
+                        try
+                        {
+                            _log.WriteLine("Load plugin " + lazyPlugin.Value);
+                            plugins.Add(lazyPlugin.Value);
+                        }
+                        catch (CompositionException ex)
+                        {
+                            _log.WriteLine(ex);
+                        }
                     }
                 }
+                catch (Exception exc) { _log.WriteLine("Fatal: " + exc); }
             }
-            catch { }
         }
     }
 }

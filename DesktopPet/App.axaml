@@ -19,7 +19,7 @@
 
   <TrayIcon.Icons>
     <TrayIcons>
-      <TrayIcon Icon="/Assets/Vinni.ico" ToolTipText="{Binding CurrentScenarioName}">
+      <TrayIcon Icon="/Assets/time_clock.ico" ToolTipText="{Binding CurrentScenarioName}">
         <TrayIcon.Menu>
           <NativeMenu>
             <NativeMenuItem Header="{Binding CurrentScenarioName}"/>
