@@ -12,19 +12,31 @@
   <ItemGroup>
     <None Remove="Images\Alien1.gif" />
     <None Remove="Images\Alien2.gif" />
+    <None Remove="Images\Astronaut.gif" />
+    <None Remove="Images\AstronautMindBlowing.gif" />
     <None Remove="Images\Landing1.gif" />
     <None Remove="Images\Landing2.gif" />
     <None Remove="Images\moon_satellite.gif" />
+    <None Remove="Images\Rocket.gif" />
     <None Remove="Images\Satellite.gif" />
+    <None Remove="Images\satellite_solar_panels.gif" />
+    <None Remove="Images\SpaceShip.gif" />
+    <None Remove="Images\UFO.gif" />
   </ItemGroup>
 
   <ItemGroup>
     <AvaloniaResource Include="Images\Alien1.gif" />
     <AvaloniaResource Include="Images\Alien2.gif" />
+    <AvaloniaResource Include="Images\Astronaut.gif" />
+    <AvaloniaResource Include="Images\AstronautMindBlowing.gif" />
     <AvaloniaResource Include="Images\Landing1.gif" />
     <AvaloniaResource Include="Images\Landing2.gif" />
     <AvaloniaResource Include="Images\moon_satellite.gif" />
+    <AvaloniaResource Include="Images\Rocket.gif" />
     <AvaloniaResource Include="Images\Satellite.gif" />
+    <AvaloniaResource Include="Images\satellite_solar_panels.gif" />
+    <AvaloniaResource Include="Images\SpaceShip.gif" />
+    <AvaloniaResource Include="Images\UFO.gif" />
   </ItemGroup>
 
   <ItemGroup>

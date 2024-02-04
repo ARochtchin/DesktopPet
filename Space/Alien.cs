@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Space
 {
-    class AlienItem
+    class StaticItem
     {
-        internal AlienItem(string name, string gifPath, int2 size, int timeS = 5)
+        internal StaticItem(string name, string gifPath, int2 size, int timeS = 5)
         {
             Name = name;
             GifPath = gifPath;
@@ -17,7 +17,7 @@ namespace Space
             TimeS = timeS;
         }
 
-        internal AlienItem(string name, string gifPath, int timeS = 5)
+        internal StaticItem(string name, string gifPath, int timeS = 5)
         {
             Name = name;
             GifPath = gifPath;
@@ -31,10 +31,10 @@ namespace Space
         public int TimeS { get; private set; }
     }
 
-    internal class Alien : IScenario
+    internal class StaticGif : IScenario
     {
-        AlienItem _appItem;
-        public Alien(AlienItem item)
+        StaticItem _appItem;
+        public StaticGif(StaticItem item)
         {
             _appItem = item;
         }

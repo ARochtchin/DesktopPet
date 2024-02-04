@@ -7,25 +7,26 @@ using System.Threading.Tasks;
 
 namespace Space
 {
-    internal class Booster : IScenario
+    internal class Rocket : IScenario
     {
-        public string Title => "Booster";
+        int2 gif_size;
+        public string Title => "Rocket";
 
-        public string Gif => "avares://Space/Images/Satellite.gif";
+        public string Gif => "avares://Space/Images/Rocket.gif";
 
         public int TimerInterval => 50;
 
         public InitResult Initialize(int2 windPos, int2 screenSize)
         {
-            var gif_size = DesktopPet.Helpers.GetImageSize(Gif);
-            return new InitResult(new int2(-gif_size.x, screenSize.y - 100 - gif_size.y), gif_size);
+            gif_size = DesktopPet.Helpers.GetImageSize(Gif);
+            return new InitResult(new int2(0, screenSize.y), gif_size);
         }
 
         public MoveResult OnMove(int2 pos, int2 screen)
         {
-            if (pos.x < screen.x)
+            if (pos.x < screen.x && pos.y>=-gif_size.y)
             {
-                return new MoveResult(pos.x + 7, pos.y - 1);
+                return new MoveResult(pos.x + 21, pos.y - 16);
             }
             else
             {

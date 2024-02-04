@@ -43,7 +43,7 @@ namespace Space
                 {
                     if (pos.y < screen.y)
                     {
-                        return new MoveResult(pos.x - 15, pos.y + 15);
+                        return new MoveResult(pos.x - 10, pos.y + 15);
                     }
                     else
                     {
@@ -54,7 +54,7 @@ namespace Space
                 }
                 else
                 {
-                    if (pos.y < screen.y)
+                    if (pos.y < screen.y && pos.x > -size2.x)
                     {
                         return new MoveResult(pos.x - 2, pos.y + 5);
                     }
